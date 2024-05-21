@@ -1,10 +1,10 @@
 # import numpy as np
 # import torch 
 # #from datasets import load_dataset, load_metric
-# from transformers import (AutoTokenizer, 
-#                           AutoModelForSequenceClassification, 
-#                           TrainingArguments, 
-#                           Trainer)
+from transformers import (AutoTokenizer, 
+                          AutoModelForSequenceClassification, 
+                          TrainingArguments, 
+                          Trainer)
 
 
 # model_name = './model'
@@ -22,8 +22,22 @@
 #         'ActivationSymmetric': True,
 #     })
 from optimum.onnxruntime import ORTModelForSequenceClassification
+import torch
 
-model = ORTModelForSequenceClassification.from_pretrained('./model',from_transformers=True)
-model.save_pretrained('./model_onnx')
+
+model = AutoModelForSequenceClassification.from_pretrained('./model')
+torch.ao.quantization.quantize_dynamic(
+                model, {torch.nn.Linear}, dtype=torch.qint8, inplace=True )
+torch.save(model, "./model_onnx_quantized/model.pt")
+# vai_q_onnx.quantize_static(
+#     './model_onnx/model.onnx',
+#     './model_onnx_quantized/model.onnx',
+#     calibration_data_reader=None,
+#     quant_format=vai_q_onnx.QuantFormat.QDQ,
+#     calibrate_method=vai_q_onnx.CalibrationMethod.MinMax,
+#     activation_type=vai_q_onnx.QuantType.QInt8,
+#     weight_type=vai_q_onnx.QuantType.QInt8,
+# )
+
 print('hello')
 
