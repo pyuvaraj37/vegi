@@ -1,0 +1,18 @@
+# Easy OCR on NPU
+
+## Steps to run screen-ocr.py
+
+1. Syntax to run:
+"""
+python screen-ocr.py x-coordinate y-coordinate width height
+"""
+## Steps to run easy_inference.py
+
+"""
+conda activate ryzenai-transformers
+"""
+
+1. Make sure all requirements are installed (could find it in requirements.txt)
+2. Run setup.bat from \ryzen-ai-sw-1.1\RyzenAI-SW\examples\transformers\setup.bat
+3. Perform dynamic quantization by running easy_quantize.py
+4. Inference the model by running easy_inference.py  
