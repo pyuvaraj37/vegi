@@ -17,10 +17,17 @@ quantized_decoder = torch.load("./torch_q_models/quantized_decoder.pt")
 # Replace the quantized linear layers with QLinear in both encoder and decoder
 node_args = ()
 node_kwargs = {'device': 'aie'}
+
 # Utils.replace_node(quantized_encoder, torch.ao.nn.quantized.dynamic.modules.linear.Linear, qlinear.QLinear, node_args, node_kwargs)
+#Was unsuccessfull as the following error was taking place:
+# File "C:\Users\mikuv\miniconda3\envs\ryzenai-transformers\lib\site-packages\transformers\models\donut\modeling_donut_swin.py", line 403, in forward
+#attention_scores = attention_scores + relative_position_bias.unsqueeze(0)
+#RuntimeError: The size of tensor a (768) must match the size of tensor b (100) at non-singleton dimension 3 
+
+
 Utils.replace_node(quantized_decoder, torch.ao.nn.quantized.dynamic.modules.linear.Linear, qlinear.QLinear, node_args, node_kwargs)
 # print(quantized_encoder)
-# print(quantized_decoder)
+print(quantized_decoder)
 
 # Load processor and tokenizer
 processor = DonutProcessor.from_pretrained("naver-clova-ix/donut-base-finetuned-cord-v2")

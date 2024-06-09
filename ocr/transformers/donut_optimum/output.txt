@@ -1,0 +1,55 @@
+(ryzenai-transformers) C:\Users\mikuv\Desktop\repos\vegi\ocr\transformers\donut_optimum>python donut_inference.py
+C:\Users\mikuv\miniconda3\envs\ryzenai-transformers\lib\site-packages\transformers\utils\generic.py:311: UserWarning: torch.utils._pytree._register_pytree_node is deprecated. Please use torch.utils._pytree.register_pytree_node instead.
+  torch.utils._pytree._register_pytree_node(
+C:\Users\mikuv\miniconda3\envs\ryzenai-transformers\lib\site-packages\transformers\utils\generic.py:311: UserWarning: torch.utils._pytree._register_pytree_node is deprecated. Please use torch.utils._pytree.register_pytree_node instead.
+  torch.utils._pytree._register_pytree_node(
+C:\Users\mikuv\miniconda3\envs\ryzenai-transformers\lib\site-packages\torch\_utils.py:382: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  device=storage.device,
+Model transformation: Replacing <class 'torch.ao.nn.quantized.dynamic.modules.linear.Linear'> layers with <class 'qlinear.QLinear'> ...
+Model transformation done!: Replaced 41 <class 'torch.ao.nn.quantized.dynamic.modules.linear.Linear'> layers with <class 'qlinear.QLinear'>.
+MBartForCausalLM(
+  (model): MBartDecoderWrapper(
+    (decoder): MBartDecoder(
+      (embed_tokens): Embedding(57580, 1024, padding_idx=1)
+      (embed_positions): MBartLearnedPositionalEmbedding(770, 1024)
+      (layers): ModuleList(
+        (0-3): 4 x MBartDecoderLayer(
+          (self_attn): MBartAttention(
+            (k_proj): ryzenAI.QLinear(in_features:1024, out_features:1024, bias:(1024,), device:aie, quant_mode:w8a8 kernel_x_shape:(8, 2048), kernel_y_shape:(2048, 2048) )
+            (v_proj): ryzenAI.QLinear(in_features:1024, out_features:1024, bias:(1024,), device:aie, quant_mode:w8a8 kernel_x_shape:(8, 2048), kernel_y_shape:(2048, 2048) )
+            (q_proj): ryzenAI.QLinear(in_features:1024, out_features:1024, bias:(1024,), device:aie, quant_mode:w8a8 kernel_x_shape:(8, 2048), kernel_y_shape:(2048, 2048) )
+            (out_proj): ryzenAI.QLinear(in_features:1024, out_features:1024, bias:(1024,), device:aie, quant_mode:w8a8 kernel_x_shape:(8, 2048), kernel_y_shape:(2048, 2048) )
+          )
+          (activation_fn): GELUActivation()
+          (self_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (encoder_attn): MBartAttention(
+            (k_proj): ryzenAI.QLinear(in_features:1024, out_features:1024, bias:(1024,), device:aie, quant_mode:w8a8 kernel_x_shape:(8, 2048), kernel_y_shape:(2048, 2048) )
+            (v_proj): ryzenAI.QLinear(in_features:1024, out_features:1024, bias:(1024,), device:aie, quant_mode:w8a8 kernel_x_shape:(8, 2048), kernel_y_shape:(2048, 2048) )
+            (q_proj): ryzenAI.QLinear(in_features:1024, out_features:1024, bias:(1024,), device:aie, quant_mode:w8a8 kernel_x_shape:(8, 2048), kernel_y_shape:(2048, 2048) )
+            (out_proj): ryzenAI.QLinear(in_features:1024, out_features:1024, bias:(1024,), device:aie, quant_mode:w8a8 kernel_x_shape:(8, 2048), kernel_y_shape:(2048, 2048) )
+          )
+          (encoder_attn_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+          (fc1): ryzenAI.QLinear(in_features:1024, out_features:4096, bias:(4096,), device:aie, quant_mode:w8a8 kernel_x_shape:(8, 2048), kernel_y_shape:(2048, 2048) )
+          (fc2): ryzenAI.QLinear(in_features:4096, out_features:1024, bias:(1024,), device:aie, quant_mode:w8a8 kernel_x_shape:(8, 2048), kernel_y_shape:(2048, 2048) )
+          (final_layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        )
+      )
+      (layernorm_embedding): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+      (layer_norm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+    )
+  )
+  (lm_head): ryzenAI.QLinear(in_features:1024, out_features:57580, bias:None, device:aie, quant_mode:w8a8 kernel_x_shape:(8, 2048), kernel_y_shape:(2048, 2048) )
+)
+Could not find image processor class in the image processor config or the model config. Loading based on pattern matching with the model's feature extractor configuration.
+Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+{'text_sequence': 'Hey How are you doing This is Charan圖書館'}
+NPU Total Time: 5.0757996
+{'text_sequence': ' I like to drink Brisk soda</s_changeprice></s_total>'}
+NPU Total Time: 4.9208303
+{'text_sequence': 'Pikkal Pikkal Pikka! Pikka!</s_nm></s_total>'}
+NPU Total Time: 5.171687199999997
+{'text_sequence': '"Right now I wish I was named Bob instead of Ash"'}
+NPU Total Time: 6.282665399999999
+{'text_sequence': '"My dream is to become the greatest Pokemon masteri That way the whole village videocing me and treat me like in somebody, sonebody importantigled to arish'}
+NPU Total Time: 12.741226199999996
