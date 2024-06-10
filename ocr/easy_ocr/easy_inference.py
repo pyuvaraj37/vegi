@@ -20,6 +20,9 @@ node_kwargs = {'device': 'aie'}
 Utils.replace_node(q_detector, torch.ao.nn.quantized.dynamic.modules.linear.Linear, qlinear.QLinear, node_args, node_kwargs)
 Utils.replace_node(q_recognizer, torch.ao.nn.quantized.dynamic.modules.linear.Linear, qlinear.QLinear, node_args, node_kwargs)
 
+print(q_detector)
+print(q_recognizer)
+
 # Initialize the EasyOCR reader
 reader = easyocr.Reader(['en'])  # Initialize with the desired language
 
