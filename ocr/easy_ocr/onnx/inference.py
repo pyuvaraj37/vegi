@@ -5,8 +5,8 @@ from skimage import io
 from timeit import default_timer as timer
 
 # Specify the path to the quantized ONNX model
-# onnx_model_path = "./models/detector_quantized.onnx"
-onnx_model_path = "./models/detector.onnx"
+onnx_model_path = "./models/detector_quantized.onnx"
+# onnx_model_path = "./models/detector.onnx"
 
 def loadImage(img_file):
     img = io.imread(img_file)  # RGB order
@@ -51,23 +51,23 @@ cpu_results = detector_session.run(None, ort_inputs)
 cpu_total = timer() - start
 
 # Print the inference time
-# print(cpu_results)
+print(cpu_results)
 print(f"CPU Inference time: {cpu_total} seconds")
 
 #IPU Inference
-config_file_path = "./vaip_config.json"
-aie_options = onnxruntime.SessionOptions()
+# config_file_path = "./vaip_config.json"
+# aie_options = onnxruntime.SessionOptions()
 
-aie_session = onnxruntime.InferenceSession(
-    onnx_model_path,
-    providers = ['VitisAIExecutionProvider'],
-    sess_options=aie_options,
-    provider_options=[{'config_file': config_file_path}]
-)
+# aie_session = onnxruntime.InferenceSession(
+#     onnx_model_path,
+#     providers = ['VitisAIExecutionProvider'],
+#     sess_options=aie_options,
+#     provider_options=[{'config_file': config_file_path}]
+# )
 
-start = timer()
-ryzen_outputs = aie_session.run(None, ort_inputs)
-aie_total = timer() - start
+# start = timer()
+# ryzen_outputs = aie_session.run(None, ort_inputs)
+# aie_total = timer() - start
 
-# print(ryzen_outputs)
-print(f"IPU Inference time: {aie_total} seconds")
+# # print(ryzen_outputs)
+# print(f"IPU Inference time: {aie_total} seconds")
