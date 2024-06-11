@@ -15,10 +15,6 @@ def screenGrab(rect):
     image = ImageGrab.grab(bbox=(x, y, x + width, y + height))
     return image
 
-# Check if CUDA is available and set the device
-# device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-# print(f"Using device: {device}")
-
 # Load the quantized models
 q_detector = torch.load('./models/quantized_detection_model.pt')
 q_recognizer = torch.load('./models/quantized_recognition_model.pt')
@@ -31,9 +27,6 @@ Utils.replace_node(q_recognizer, torch.ao.nn.quantized.dynamic.modules.linear.Li
 
 # Initialize the EasyOCR reader
 reader = easyocr.Reader(['en'])  # Initialize with the desired language
-
-# # Initialize the EasyOCR reader with GPU support if available
-# reader = easyocr.Reader(['en'], gpu=torch.cuda.is_available())
 
 # Replace the models in the reader object
 reader.detector = q_detector

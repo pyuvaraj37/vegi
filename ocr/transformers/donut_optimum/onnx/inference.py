@@ -6,7 +6,8 @@ from PIL import Image
 from timeit import default_timer as timer
 
 #Config file path
-config_file_path = "C:\\Users\\mikuv\\Desktop\\ryzen-ai-sw-1.1\\RyzenAI-SW\\donut_optimum\\archives\\vaip_config.json"
+config_file_path = "./vaip_config.json"
+# config_file_path = "./vaip_config_transformers.json"
 aie_options = onnxruntime.SessionOptions()
 
 # Onnx Model Path
