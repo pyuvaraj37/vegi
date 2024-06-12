@@ -55,7 +55,7 @@ for i in range(1,6):
         pixel_values=pixel_values,
         decoder_input_ids=decoder_input_ids,
         # max_length=model.decoder.config.max_position_embeddings,
-        max_length=512,
+        max_length=100,
         pad_token_id=tokenizer.pad_token_id,
         eos_token_id=tokenizer.eos_token_id,
         use_cache=True,

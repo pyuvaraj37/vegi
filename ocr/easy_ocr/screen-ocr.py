@@ -22,8 +22,8 @@ q_recognizer = torch.load('./models/quantized_recognition_model.pt')
 # Replace the quantized linear layers with QLinear in both encoder and decoder
 node_args = ()
 node_kwargs = {'device': 'aie'}
-Utils.replace_node(q_detector, torch.ao.nn.quantized.dynamic.modules.linear.Linear, qlinear.QLinear, node_args, node_kwargs)
-Utils.replace_node(q_recognizer, torch.ao.nn.quantized.dynamic.modules.linear.Linear, qlinear.QLinear, node_args, node_kwargs)
+# Utils.replace_node(q_detector, torch.ao.nn.quantized.dynamic.modules.linear.Linear, qlinear.QLinear, node_args, node_kwargs)
+# Utils.replace_node(q_recognizer, torch.ao.nn.quantized.dynamic.modules.linear.Linear, qlinear.QLinear, node_args, node_kwargs)
 
 # Initialize the EasyOCR reader
 reader = easyocr.Reader(['en'])  # Initialize with the desired language
@@ -48,16 +48,22 @@ if __name__ == "__main__":
     print(EXE + ": watching " + str(screen_rect))
 
     # Loop to monitor the specified rectangle of the screen
-    while True:
-        start = timer()
-        image = screenGrab(screen_rect)  # Grab the area of the screen
-        image_path = "./temp_screengrab.png"
-        image.save(image_path)   # Save the image to a temporary file
-        
-        result = reader.readtext(image_path, detail=0, paragraph=True)  # OCR the image
-        
-        # Output the OCR results
-        if result:
-            print(result)
-        
-        # print(f"Processing Time: {timer() - start}")
+    # Open a file to save the results
+    with open('ocr_results.txt', 'w') as file:
+        while True:
+            start = timer()
+            image = screenGrab(screen_rect)  # Grab the area of the screen
+            image_path = "./temp_screengrab.png"
+            image.save(image_path)   # Save the image to a temporary file
+            
+            result = reader.readtext(image_path, detail=0, paragraph=True)  # OCR the image
+            
+            # Output the OCR results
+            if result:
+                print(result)
+                # Write the result to a file
+                file.write('\n'.join(result) + '\n')
+            
+            # Uncomment below to also log processing time to the file
+            # processing_time = f"Processing Time: {timer() - start}\n"
+            # file.write(processing_time)

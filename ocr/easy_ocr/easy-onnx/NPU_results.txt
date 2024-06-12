@@ -1,0 +1,15 @@
+Hey Hou are you doing This Charan
+NPU-ONNX Processing Time: 1.1292216000000002
+Hello User! I'm Donut-OCR
+NPU-ONNX Processing Time: 0.5877799999999995
+1 like to drink Brisk soda
+NPU-ONNX Processing Time: 0.5839825999999997
+Pikka Pikka Pikka
+NPU-ONNX Processing Time: 0.6767198999999993
+Right now wish was named Bob" instead of Ash""
+NPU-ONNX Processing Time: 0.9409672000000002
+"My dream is t0 become the greatest Pokemon master! That way the whole village will stop disrespecting me and treat me like Im somebody; somebody importantl"
+NPU-ONNX Processing Time: 0.7317740999999991
+"Pikachu, please stay Nith
+forever
+NPU-ONNX Processing Time: 0.8428609999999992
