@@ -1,20 +1,19 @@
 
 import os
 import torch
-import qlinear
 from PIL import ImageGrab
 from timeit import default_timer as timer
-from utils import Utils
-from .easyocr import easyocr
+import easyocr
 from PIL import Image
 import PIL.ImageOps   
 
 class OCR:
-    def __init__(self, x, y, width, height):
+    def __init__(self, x, y, width, height, settings):
         print("Intializing OCR-based Gamer Capture")
+        self.settings = settings
         self.screen_rect = [x, y, width, height]
         self.reader = easyocr.Reader(['en'])  # Initialize with the desired language
-
+        self.settings = settings
         if not os.path.isfile('./models/ocr/quantized_detection_model.pt') and not os.path.isfile('./models/ocr/quantized_recognition_model.pt'): 
             print("Game capture models not downloaded. Installing models...")
             # Initialize the EasyOCR reader
@@ -34,15 +33,15 @@ class OCR:
         print("Loading models...")
         self.reader.detector = torch.load('./models/ocr/quantized_detection_model.pt')
         self.reader.recognizer = torch.load('./models/ocr/quantized_recognition_model.pt')
-        # print(self.reader.detector)
-        # print(self.reader.recognizer)
         node_args = ()
         node_kwargs = {'device': 'aie'}
         print("Converting models...")
-        Utils.replace_node(self.reader.detector, torch.ao.nn.quantized.dynamic.modules.linear.Linear, qlinear.QLinear, node_args, node_kwargs)
-        Utils.replace_node(self.reader.recognizer, torch.ao.nn.quantized.dynamic.modules.linear.Linear, qlinear.QLinear, node_args, node_kwargs)
-        #print(self.reader.detector)
-        #print(self.reader.recognizer)
+        if (self.settings[0] == 'npu'):
+            import qlinear 
+            from utils import Utils
+            Utils.replace_node(self.reader.detector, torch.ao.nn.quantized.dynamic.modules.linear.Linear, qlinear.QLinear, node_args, node_kwargs)
+            Utils.replace_node(self.reader.recognizer, torch.ao.nn.quantized.dynamic.modules.linear.Linear, qlinear.QLinear, node_args, node_kwargs)
+        #Add gpu support
         self.image_path = "./temp/dialogue_capture.png"   
 
     def screenGrab(self, rect):

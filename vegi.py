@@ -3,7 +3,12 @@ import sentimentanalysis.SentimentAnalysis as SentimentAnalysis
 import tts.TTS as TTS
 from playsound import playsound
 import json
+import settings
 
+######## SETTINGS ##############
+#0: Device [cpu, npu, gpu] Need to add GPU support 
+#1: Quantization [True/False] Need to add different quantizations (doesn't work for not so just specify device)
+settings = ['npu']
 
 def leagueTextLineExtractor(line):
     # Specific characters
@@ -29,15 +34,15 @@ def read_file():
     return SMRF1
 
 # Other option is input for Overwolf
-USE_OCR = False
+USE_OCR = True
 
 if USE_OCR:
-    game_capture = OCR(50, 690, 867, 135)
+    game_capture = OCR(50, 690, 867, 135, settings)
 else:
     initial = read_file()
 
-text_analysis = SentimentAnalysis()
-speaker = TTS()
+text_analysis = SentimentAnalysis(settings)
+speaker = TTS(settings)
 audio_file_path = './temp/dialogue_capture.wav'
 
 if USE_OCR:
@@ -47,7 +52,7 @@ if USE_OCR:
 
         print(dialogue)
         emotion = text_analysis.run(dialogue[0])
-        speaker.run(dialogue, audio_file_path)
+        speaker.run(dialogue[0], audio_file_path)
         playsound(audio_file_path)
 
 else:

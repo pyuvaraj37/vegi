@@ -1,3 +1,17 @@
 # VEGI (ˈve-jē') : Voice-Enhanced Gaming Interface
 
-C:\Users\prith\Documents\RyzenAI-SW\example\transformers\setup.bat
+NPU - Intall env for ryzenai-transformers (need to add steps here later) and run setup.bat from RyzenAI
+
+CPU - Should work after fufilling pip dependencies
+
+GPU - Needs to add cuda support 
+
+
+Two paths:
+
+OCR - Grab games dialogue from input coordinates, need to calibrate it for pokemon for AMD Contest. 
+
+Overwolf - Grab chat data from Overwolf API and writes to a files and vegi read from it. Need to streamline data transfer or package vegi with overwolf app. 
+
+
+Run sample-app by following https://overwolf.github.io/start/basic-app/sample-app (only tested with League of Legends chat)
