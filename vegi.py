@@ -8,7 +8,7 @@ import settings
 ######## SETTINGS ##############
 #0: Device [cpu, npu, gpu] Need to add GPU support 
 #1: Quantization [True/False] Need to add different quantizations (doesn't work for not so just specify device)
-settings = ['npu']
+settings = ['gpu']
 
 def leagueTextLineExtractor(line):
     # Specific characters

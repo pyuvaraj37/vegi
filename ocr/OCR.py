@@ -36,12 +36,17 @@ class OCR:
         node_args = ()
         node_kwargs = {'device': 'aie'}
         print("Converting models...")
-        if (self.settings[0] == 'npu'):
+        if (self.settings[0] == 'cpu'):
             import qlinear 
             from utils import Utils
             Utils.replace_node(self.reader.detector, torch.ao.nn.quantized.dynamic.modules.linear.Linear, qlinear.QLinear, node_args, node_kwargs)
             Utils.replace_node(self.reader.recognizer, torch.ao.nn.quantized.dynamic.modules.linear.Linear, qlinear.QLinear, node_args, node_kwargs)
         #Add gpu support
+        if(self.settings[0] == 'gpu'):
+            device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+            print(device)
+            tensor = torch.randn(3,3).to(device)
+        # device = torch.device('cuda' if torch.cuda.is_available() else "npu")
         self.image_path = "./temp/dialogue_capture.png"   
 
     def screenGrab(self, rect):

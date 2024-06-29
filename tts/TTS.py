@@ -12,12 +12,16 @@ class TTS:
         self.tokenizer = VitsTokenizer.from_pretrained("facebook/mms-tts-eng")
         self.model = VitsModel.from_pretrained("facebook/mms-tts-eng")
         self.model = torch.quantization.quantize_dynamic(self.model, {torch.nn.Linear}, dtype=torch.qint8, inplace=True)
-        if (self.settings[0] == 'npu'):
+        if (self.settings[0] == 'cpu'):
             import qlinear
             from utils import Utils
             node_args = ()
             node_kwargs = {'device': 'aie'}
             Utils.replace_node(self.model, torch.ao.nn.quantized.dynamic.modules.linear.Linear, qlinear.QLinear, node_args, node_kwargs )
+        if (self.settings[0]=='gpu'):
+            device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+            print(device)
+            tensor = torch.randn(3,3).to(device)
         #Add gpu support
         
     def run(self, dialogue, path):
