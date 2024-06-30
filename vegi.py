@@ -2,13 +2,11 @@ import ocr.OCR as OCR
 import sentimentanalysis.SentimentAnalysis as SentimentAnalysis
 import tts.TTS as TTS
 from playsound import playsound
-import json
-import settings
 
 ######## SETTINGS ##############
 #0: Device [cpu, npu, gpu] Need to add GPU support 
-#1: Quantization [True/False] Need to add different quantizations (doesn't work for not so just specify device)
-settings = ['gpu']
+#1: Quantization [True/False] Need to add different quantizations (doesn't work for now so just specify device)
+settings = ['cpu']
 
 def leagueTextLineExtractor(line):
     # Specific characters

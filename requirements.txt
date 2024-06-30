@@ -1,0 +1,7 @@
+playsound==1.3.0
+soundfile==0.12.1
+torch==2.2.2
+transformers==4.37
+Pillow==10.3.0
+easyocr==1.7.1
+PyObjC==10.3.1 
