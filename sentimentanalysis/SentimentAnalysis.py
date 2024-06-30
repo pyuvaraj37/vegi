@@ -76,7 +76,6 @@ class SentimentAnalysis:
         with torch.no_grad():
             outputs = self.model(**inputs)
         logits = outputs.logits
-        logits = outputs.logits
         probabilities = torch.nn.functional.softmax(logits, dim=-1)
         predicted_class_index = probabilities.argmax().item()
         print(f"Predicted sentiment: {self.sentiment_labels[predicted_class_index]}")

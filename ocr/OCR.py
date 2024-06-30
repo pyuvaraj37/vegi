@@ -4,8 +4,6 @@ import torch
 from PIL import ImageGrab
 from timeit import default_timer as timer
 import easyocr
-from PIL import Image
-import PIL.ImageOps   
 
 class OCR:
     def __init__(self, x, y, width, height, settings):
@@ -27,6 +25,7 @@ class OCR:
                 recognition_model, {torch.nn.Linear}, dtype=torch.qint8, inplace=True
             )
             # Save the quantized models separately
+            os.mkdir("./models/ocr")
             torch.save(quantized_reader, './models/ocr/quantized_detection_model.pt')
             torch.save(quantized_recognition_model, './models/ocr/quantized_recognition_model.pt')
 
@@ -54,7 +53,6 @@ class OCR:
     def run(self):
         print("Extracting dialogue...")
         image = self.screenGrab(self.screen_rect)  # Grab the area of the screen
-        #image = PIL.ImageOps.invert(image)
         image.save(self.image_path)   # Save the image to a temporary file
         result = self.reader.readtext(self.image_path, detail=0, paragraph=True)  # OCR the image
         return result

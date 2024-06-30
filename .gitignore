@@ -2,3 +2,5 @@ sentimentanalysis/__pycache__
 tts/__pycache__
 ocr/__pycache__
 models/ocr
+__pycache__/
+temp/
