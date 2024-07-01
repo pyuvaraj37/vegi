@@ -6,9 +6,10 @@
   <!-- <a href="https://vegi.netlify.app">Demo</a> -->
 </div>
 
-<!-- 
+
 <h1 align="center">VEGI (ˈve-jē') : Voice-Enhanced Gaming Interface</h1>
 
+<!-- 
  <p align="center">
   <img alt="Github top language" src="https://img.shields.io/github/languages/top/{{YOUR_GITHUB_USERNAME}}/vegi?color=56BEB8">
 
@@ -39,6 +40,7 @@
   <a href="#rocket-technologies">Technologies</a> &#xa0; | &#xa0;
   <a href="#white_check_mark-requirements">Requirements</a> &#xa0; | &#xa0;
   <a href="#checkered_flag-starting">Starting</a> &#xa0; | &#xa0;
+  <a href="#pill-todo">TODO</a> &#xa0; | &#xa0;
   <a href="#memo-license">License</a> &#xa0; | &#xa0;
   <a href="https://github.com/{{YOUR_GITHUB_USERNAME}}" target="_blank">Author</a>
 </p>
@@ -51,34 +53,31 @@ The Voice-Enhanced Gaming Interface (VEGI) is an AI solution to provide real-tim
 
 ## :sparkles: Features ##
 
-:heavy_check_mark: Feature 1;\
-:heavy_check_mark: Feature 2;\
-:heavy_check_mark: Feature 3;
+:heavy_check_mark: Pokemon Emerald voiced cutscenes using OCR.
+:heavy_check_mark: League of Legends champion voiced in-game chat.
+:heavy_check_mark: Many more TODO...
 
 ## :rocket: Technologies ##
 
 The following tools were used in this project:
 
-- [Expo](https://expo.io/)
+- [Python 3.11](https://www.python.org/downloads/release/python-3110/)
 - [Node.js](https://nodejs.org/en/)
-- [React](https://pt-br.reactjs.org/)
-- [React Native](https://reactnative.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
+- [Conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)
 
 ## :white_check_mark: Requirements ##
 
-Before starting :checkered_flag:, you need to understand the hardware you plan to run VEGI on. There is support for CPU, GPU, and AMD's NPU, with the last one requiring special drivers to be setup.
+Before starting :checkered_flag:, you need to understand the hardware you plan to run VEGI on. There is support for CPU, GPU, and AMD's NPU, with the last one requiring special drivers to be setup. NOTE: NPU must be run and set up using the [AMD DOCs](). 
 
+If you intend to use the League of Legends champion voice in-game, you will first need to install [Overwolf](). Then go to the appstore and install [VEGI](). 
 
-you need to have [Python 3.11](), and suggested to use a [Conda]() virtual enviorment.
-
-[Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
+You will need to have [Python 3.11](https://www.python.org/downloads/release/python-3110/), and suggested to use a [Conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html) virtual enviorment.
 
 ## :checkered_flag: Starting ##
 
 ```bash
 # Clone this project
-$ git clone https://github.com/{{YOUR_GITHUB_USERNAME}}/vegi
+$ git clone https://github.com/pyuvaraj37/vegi.git
 
 # Access
 $ cd vegi
@@ -100,29 +99,35 @@ $ python -m pip install requirements-npu.txt
 $ setup.bat
 ```
 
-Run
+Run with the desired configuration. For League of Legends make sure to have Overwolf and the VEGI Overwolf app installed.
 ```bash
 #Run with configurations
-$ python vegi.py --device <CPU/GPU/NPU> 
+$ python vegi.py --device <CPU/GPU/NPU> --game <Pokemon/LOL>
 ```
 
 
-NPU - Intall env for ryzenai-transformers (need to add steps here later) and run setup.bat from RyzenAI
+## :pill: TODO ##
 
-CPU - Should work after fufilling pip dependencies
+NPU
+Intall env for ryzenai-transformers (need to add steps here later) and run setup.bat from RyzenAI (Create new setup.bat for VEGI)
+
+
 
 GPU - Needs to add cuda support 
 
 
 Two paths:
 
-OCR - Grab games dialogue from input coordinates, need to calibrate it for pokemon for AMD Contest. 
+OCR 
 
-Overwolf - Grab chat data from Overwolf API and writes to a files and vegi read from it. Need to streamline data transfer or package vegi with overwolf app. 
+- Grab games dialogue from input coordinates, need to calibrate it for pokemon for AMD Contest. 
 
+Overwolf 
+
+- Grab chat data from Overwolf API and writes to a files and vegi read from it. Need to streamline data transfer or package vegi with overwolf app. 
+- Package sample app as VEGI to make it easy to run. 
 
 Run sample-app by following https://overwolf.github.io/start/basic-app/sample-app (only tested with League of Legends chat)
-
 
 
 ## :memo: License ##

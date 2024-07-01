@@ -2,11 +2,27 @@ import ocr.OCR as OCR
 import sentimentanalysis.SentimentAnalysis as SentimentAnalysis
 import tts.TTS as TTS
 from playsound import playsound
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-d", "--device", help="Devices: CPU, NPU and GPU")
+parser.add_argument("-g", "--game", help="Game: Pokemon, or LOL")
+args = parser.parse_args()
+
+if args.game == "Pokemon":
+    USE_OCR = True
+else: 
+    USE_OCR = False
 
 ######## SETTINGS ##############
 #0: Device [cpu, npu, gpu] Need to add GPU support 
 #1: Quantization [True/False] Need to add different quantizations (doesn't work for now so just specify device)
-settings = ['cpu']
+if args.device == "CPU":
+    settings = ['cpu']
+elif args.device == "NPU":
+    settings = ['npu']
+elif args.device == "GPU":
+    settings = ['gpu']
 
 def leagueTextLineExtractor(line):
     # Specific characters
@@ -32,7 +48,6 @@ def read_file():
     return SMRF1
 
 # Other option is input for Overwolf
-USE_OCR = True
 
 if USE_OCR:
     game_capture = OCR(50, 690, 867, 135, settings)
