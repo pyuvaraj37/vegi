@@ -12,6 +12,9 @@ class OCR:
         self.screen_rect = [x, y, width, height]
         self.reader = easyocr.Reader(['en'])  # Initialize with the desired language
         self.settings = settings
+        if not os.path.isdir('./temp'):
+            os.mkdir("./temp")
+            
         if not os.path.isfile('./models/ocr/quantized_detection_model.pt') and not os.path.isfile('./models/ocr/quantized_recognition_model.pt'): 
             print("Game capture models not downloaded. Installing models...")
             # Initialize the EasyOCR reader

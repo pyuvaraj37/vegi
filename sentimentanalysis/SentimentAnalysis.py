@@ -80,3 +80,6 @@ class SentimentAnalysis:
         predicted_class_index = probabilities.argmax().item()
         print(f"Predicted sentiment: {self.sentiment_labels[predicted_class_index]}")
         return self.sentiment_labels[predicted_class_index]
+    
+
+    

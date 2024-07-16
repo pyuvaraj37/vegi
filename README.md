@@ -54,7 +54,9 @@ The Voice-Enhanced Gaming Interface (VEGI) is an AI solution to provide real-tim
 ## :sparkles: Features ##
 
 :heavy_check_mark: Pokemon Emerald voiced cutscenes using OCR.
+
 :heavy_check_mark: League of Legends champion voiced in-game chat.
+
 :heavy_check_mark: Many more TODO...
 
 ## :rocket: Technologies ##
@@ -111,10 +113,7 @@ $ python vegi.py --device <CPU/GPU/NPU> --game <Pokemon/LOL>
 NPU
 Intall env for ryzenai-transformers (need to add steps here later) and run setup.bat from RyzenAI (Create new setup.bat for VEGI)
 
-
-
 GPU - Needs to add cuda support 
-
 
 Two paths:
 
@@ -135,7 +134,7 @@ Run sample-app by following https://overwolf.github.io/start/basic-app/sample-ap
 This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
 
 
-Made with :heart: by <a href="https://github.com/{{YOUR_GITHUB_USERNAME}}" target="_blank">{{YOUR_NAME}}</a>
+Made with :heart: by <a href="https://github.com/pyuvaraj37" target="_blank">pyuvaraj37</a>
 
 &#xa0;
 

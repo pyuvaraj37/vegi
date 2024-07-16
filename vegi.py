@@ -50,7 +50,7 @@ def read_file():
 # Other option is input for Overwolf
 
 if USE_OCR:
-    game_capture = OCR(50, 690, 867, 135, settings)
+    game_capture = OCR(50, 930, 1000, 190, settings)
 else:
     initial = read_file()
 
@@ -62,7 +62,7 @@ if USE_OCR:
     while True:
         input("Press Enter to continue...")
         dialogue = game_capture.run()
-
+        #dialogue = ["Testing one, two, three."]
         print(dialogue)
         emotion = text_analysis.run(dialogue[0])
         speaker.run(dialogue[0], audio_file_path)
