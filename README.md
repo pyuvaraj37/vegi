@@ -42,14 +42,14 @@
   <a href="#checkered_flag-starting">Starting</a> &#xa0; | &#xa0;
   <a href="#pill-todo">TODO</a> &#xa0; | &#xa0;
   <a href="#memo-license">License</a> &#xa0; | &#xa0;
-  <a href="https://github.com/{{YOUR_GITHUB_USERNAME}}" target="_blank">Author</a>
+  <a href="https://github.com/pyuvaraj37" target="_blank">Author</a>
 </p>
 
 <br>
 
 ## :dart: About ##
 
-The Voice-Enhanced Gaming Interface (VEGI) is an AI solution to provide real-time voice generation for various games. 
+The Voice-Enhanced Gaming Interface (VEGI) is an AI solution to provide real-time voice generation for various games. Created for the AMD Perversive AI Developer Contest on Hackster: [VEGI](https://www.hackster.io/516129/vegi-ve-je-voice-enhanced-gaming-interface-c00747).
 
 ## :sparkles: Features ##
 
@@ -66,6 +66,7 @@ The following tools were used in this project:
 - [Python 3.11](https://www.python.org/downloads/release/python-3110/)
 - [Node.js](https://nodejs.org/en/)
 - [Conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)
+- [RyzenAI-SW](https://github.com/amd/RyzenAI-SW)
 
 ## :white_check_mark: Requirements ##
 
@@ -92,13 +93,15 @@ CPU/GPU
 $ python -m pip install requirements.txt
 ```
 
-AMD's NPU
+AMD's NPU (setup up RyzenAI-SW github first)
 ```bash
-#Install dependencies
-$ python -m pip install requirements-npu.txt
+#Set up the transformer example from RyzenAI-SW and install all depedencies
+#Once the setup.bat is run, you can continue below.
 
-#Setup NPU drivers
-$ setup.bat
+#Install dependencies
+$ python -m pip install requirements.txt
+
+
 ```
 
 Run with the desired configuration. For League of Legends make sure to have Overwolf and the VEGI Overwolf app installed.
@@ -107,27 +110,25 @@ Run with the desired configuration. For League of Legends make sure to have Over
 $ python vegi.py --device <CPU/GPU/NPU> --game <Pokemon/LOL>
 ```
 
+Overwolf:
+Run sample-app by following https://overwolf.github.io/start/basic-app/sample-app (only tested with League of Legends chat) need Developer account on Overwolf.
 
 ## :pill: TODO ##
 
-NPU
-Intall env for ryzenai-transformers (need to add steps here later) and run setup.bat from RyzenAI (Create new setup.bat for VEGI)
+NPU:
+- Intall env for ryzenai-transformers (need to add steps here later) and run setup.bat from RyzenAI (Create new setup.bat for VEGI)
 
-GPU - Needs to add cuda support 
+GPU: 
+- Needs to add cuda support 
 
 Two paths:
 
-OCR 
-
+OCR: 
 - Grab games dialogue from input coordinates, need to calibrate it for pokemon for AMD Contest. 
 
-Overwolf 
-
-- Grab chat data from Overwolf API and writes to a files and vegi read from it. Need to streamline data transfer or package vegi with overwolf app. 
+Overwolf: 
+- Need to streamline data transfer or package vegi with overwolf app. 
 - Package sample app as VEGI to make it easy to run. 
-
-Run sample-app by following https://overwolf.github.io/start/basic-app/sample-app (only tested with League of Legends chat)
-
 
 ## :memo: License ##
 
