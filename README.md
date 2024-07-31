@@ -28,9 +28,9 @@
 
 <!-- Status -->
 
-<h4 align="center"> 
+<!-- <h4 align="center"> 
 	🚧  Vegi 🚀 Under construction...  🚧
-</h4> 
+</h4>  -->
 
 <hr>
 
